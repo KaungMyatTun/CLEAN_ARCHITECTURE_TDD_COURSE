@@ -1,35 +1,36 @@
+import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/core/usecases/usecase.dart';
 import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/features/number_trivia/domain/repositories/number_trivia_repository.dart';
-import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/features/number_trivia/domain/usecases/get_concrete_number_trivia.dart';
+import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/features/number_trivia/domain/usecases/get_random_number_trivia.dart';
 import 'package:dartz/dartz.dart';
-import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 
 class MockNumberTriviaRepository extends Mock
     implements NumberTriviaRepository {}
 
 void main() {
-  GetConcreteNumberTrivia usecase;
+  GetRandomNumberTrivia usecase;
   MockNumberTriviaRepository mockNumberTriviaRepository;
 
   setUp(() {
     mockNumberTriviaRepository = MockNumberTriviaRepository();
-    usecase = GetConcreteNumberTrivia(mockNumberTriviaRepository);
+    usecase = GetRandomNumberTrivia(repository: mockNumberTriviaRepository);
   });
 
-  final tNumber = 1;
-  final tNumberTrivia = NumberTrivia(text: 'test', number: tNumber);
+  final tNumberTrivia = NumberTrivia(text: 'test', number: 1);
 
-  test('Should get trivia for the number from repository', () async {
+  test('Should get trivia from repository', () async {
     // arrange
-    when(mockNumberTriviaRepository.getConcreteNumberTrivia(any))
+    when(mockNumberTriviaRepository.getRandomNumberTrivia())
         .thenAnswer((_) async => Right(tNumberTrivia));
+
     // act
-    final result = await usecase(Params(number: tNumber));
+    final result = await usecase(NoParams());
 
     // assert
     expect(result, Right(tNumberTrivia));
-    verify(mockNumberTriviaRepository.getConcreteNumberTrivia(tNumber));
+    verify(mockNumberTriviaRepository.getRandomNumberTrivia());
     verifyNoMoreInteractions(mockNumberTriviaRepository);
   });
 }

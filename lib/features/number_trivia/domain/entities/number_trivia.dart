@@ -8,5 +8,5 @@ class NumberTrivia extends Equatable {
   NumberTrivia({@required this.text, @required this.number}) : super();
 
   @override
-  List<Object> get props => throw UnimplementedError();
+  List<Object> get props => [];
 }
