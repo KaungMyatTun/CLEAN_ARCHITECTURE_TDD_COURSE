@@ -1,6 +1,6 @@
 import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/core/error/exceptions.dart';
 import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/core/error/failures.dart';
-import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/core/platform/network_info.dart';
+import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/core/network/network_info.dart';
 import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/features/number_trivia/data/datasources/number_trivia_local_data_source.dart';
 import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:CLEAN_ARCHITECTURE_TDD_COURSE/features/number_trivia/data/models/number_trivia_model.dart';
